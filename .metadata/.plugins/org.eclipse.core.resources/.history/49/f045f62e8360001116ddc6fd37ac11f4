@@ -1,0 +1,37 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="com.memberone.*" %>
+<% request.setCharacterEncoding("utf-8"); %>
+
+<%-- 1. 폼에서 넘어온 데이터 받기 --%>
+<jsp:useBean id="dao" class="com.memberone.StudentDAO"></jsp:useBean>
+<jsp:useBean id="vo" class="com.memberone.StudentVO"></jsp:useBean>
+<jsp:setProperty property="*" name="vo"/>
+
+<%-- 2. 세션에서 현재 로그인한 아이디 가져와서 vo에 세팅 --%>
+<%
+    String loginID = (String)session.getAttribute("loginID");
+    vo.setId(loginID); // VO에 ID를 넣어야 SQL의 WHERE ID=? 조건이 작동합니다.
+    
+    // 3. DB 업데이트 실행
+    boolean result = dao.updateMember(vo);
+%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>정보수정확인</title>
+</head>
+<body>
+    <script type="text/javascript">
+        <% if(result) { %>
+            alert("회원 정보가 수정되었습니다.");
+            location.href = "login.jsp"; // 수정 완료 후 이동할 페이지
+        <% } else { %>
+            alert("회원 정보 수정에 실패했습니다.");
+            history.back(); // 실패 시 이전 페이지로
+        <% } %>
+    </script>
+</body>
+</html>

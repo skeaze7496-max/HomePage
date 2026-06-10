@@ -1,0 +1,18 @@
+package com.vscore;
+import java.util.*;
+import java.io.*;
+public class ScoreMain {
+
+	public static void main(String[] args) throws IOException {		
+		char ch;
+		Score score = new Scoreimpl();
+		
+		while(true) {
+			do {
+				System.out.println("추가 작업");
+			}
+		}
+		
+	}
+	
+}

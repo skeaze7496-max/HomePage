@@ -1,0 +1,35 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="com.memberone.*" %>
+<jsp:useBean id="dao" class="com.memberone.StudentDAO"></jsp:useBean>
+
+<%
+    // 1. 세션에서 현재 로그인한 ID를 가져옴
+    String loginID = (String)session.getAttribute("loginID");
+
+    // 2. 로그인 안 되어 있으면 login.jsp로 돌려보냄
+    if(loginID == null) {
+        response.sendRedirect("login.jsp");
+        return;
+    }
+
+    // 3. DAO를 사용하여 DB에서 삭제
+    dao.deleteMember(loginID);
+
+    // 4. 세션 무효화 (로그아웃 처리)
+    session.invalidate();
+%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원탈퇴</title>
+</head>
+<body>
+    <script type="text/javascript">
+        alert("회원 탈퇴가 정상적으로 처리되었습니다.");
+        location.href = "login.jsp"; // 메인이나 로그인 화면으로 이동
+    </script>
+</body>
+</html>

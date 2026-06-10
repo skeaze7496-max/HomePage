@@ -1,0 +1,18 @@
+package com.boardone;
+
+import java.security.Timestamp;
+
+public class BoardVO {
+	private int num;
+    private String writer;
+    private String email;
+    private String subject;
+    private String pass;
+    private int readcount;
+    private int ref;
+    private int step;
+    private int depth;
+    private Timestamp regdate; // java.sql.Timestamp 사용
+    private String content;
+    private String ip;
+}

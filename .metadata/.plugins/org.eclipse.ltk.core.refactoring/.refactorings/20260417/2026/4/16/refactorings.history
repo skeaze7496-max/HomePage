@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.arraytwoex.ArrraytwoEx03&apos; to &apos;ArraytwoEx03&apos;&#x0D;&#x0A;- Original project: &apos;20260417&apos;&#x0D;&#x0A;- Original element: &apos;com.arraytwoex.ArrraytwoEx03&apos;&#x0D;&#x0A;- Renamed element: &apos;com.arraytwoex.ArraytwoEx03&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;ArrraytwoEx03&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;com.arraytwoex{ArrraytwoEx03.java[ArrraytwoEx03" matchStrategy="1" name="ArraytwoEx03" qualified="false" references="true" similarDeclarations="false" stamp="1776395841499" textual="false" version="1.0"/>
+</session>

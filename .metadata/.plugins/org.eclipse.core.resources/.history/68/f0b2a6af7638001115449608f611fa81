@@ -1,0 +1,19 @@
+package forExam;
+
+/*		문]
+ * 			양의 실수만 입력받아 입력받은 수까지의 평균을 구하시오.
+ * 			단, 음의 실수가 입력되는 합계를 출력하도록 구현하시오.
+ * 
+ * 
+ */
+
+import java.util.*;
+public class ForExam02 {
+
+	public static void main(String[] args) {
+		
+		
+		
+	}
+
+}

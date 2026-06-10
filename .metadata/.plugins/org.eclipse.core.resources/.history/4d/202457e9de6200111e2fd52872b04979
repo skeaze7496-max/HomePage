@@ -1,0 +1,4 @@
+function writeSave(){
+	if(document.writeForm.writer.value==""){
+	}
+}

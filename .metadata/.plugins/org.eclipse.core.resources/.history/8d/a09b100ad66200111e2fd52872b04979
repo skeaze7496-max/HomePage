@@ -1,0 +1,25 @@
+package com.boardone;
+import java.sql.*;
+import javax.sql.*;
+import javax.naming.*;
+
+public class ConnUtil {
+
+	private static DataSource ds;
+	
+	static {
+		try {
+			// Context를 생성하여 서버 자원에 접근
+			Context initContext = new InitialContext();
+			Context envContext = (Context)initContext.lookup("java:/comp/env");
+			// web.xml이나 context.xml에 설정된 데이터 소스 "jdbc/myoracle"을 찾음
+			ds = (DataSource)envContext.lookup("jdbc/myoracle");
+		} catch (NamingException ne) {
+			ne.printStackTrace();
+		}
+	}
+	public static Connection getConnection() throws SQLException {
+		return ds.getConnection();
+	}
+	
+}

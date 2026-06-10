@@ -1,0 +1,14 @@
+package com.ex;
+
+public class Test {
+
+	public static void main(String[] args) {
+		System.out.println("안녕하세요."); // br이랑 똑같음. ln이 Line Next의 약자.
+		System.out.print("안녕하세요."); // 행을 띄지않고 유지.
+		
+		
+		System.out.printf("100"); // 서식을 지정해서 출력.
+		System.out.printf("%d",100);
+	}
+
+}

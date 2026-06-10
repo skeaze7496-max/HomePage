@@ -1,0 +1,46 @@
+package com.vscore;
+import java.util.*;
+import java.io.*;
+public class ScoreMain {
+
+	public static void main(String[] args) throws IOException {		
+		char ch;
+		Score score = new Scoreimpl();
+		
+		while(true) {
+			do {
+				System.out.print("1.추가 2.수정 3.삭제 4.전체출력 5.학번검색 6.이름검색 7.종료 : ");
+				ch = (char)System.in.read();
+				System.in.read();
+				System.in.read();
+			}while(ch < '1' || ch > '7');
+				
+			switch (ch) {
+			case '1':
+				
+				break;
+			case '2':
+				
+				break;
+			case '3':
+				
+				break;
+			case '4':
+				listall();
+				break;
+			case '5':
+				
+				break;
+			case '6':
+				
+				break;
+			case '7':
+				return;
+			default:System.out.println("메뉴에 없습니다.");
+				break;
+			}
+		}
+		
+	}
+	
+}

@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+/* 전체 폰트 및 배경 설정 */
+body {
+    font-family: 'Nanum Gothic', sans-serif;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+}
+
+/* 테이블 전체 스타일 */
+table {
+	font-family: 'Nanum Gothic', sans-serif;
+    width: 600px;
+    background-color: #f9f9f9;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* 테이블 헤더(제목) */
+table tr:first-child td {
+    padding: 20px;
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+/* 라벨(아이디, 비밀번호 등) */
+td:first-child {
+    width: 150px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    font-weight: bold;
+    color: #333;
+}
+
+/* 입력 필드 */
+td:last-child {
+    padding: 10px;
+}
+
+input[type="text"], input[type="password"], input[type="email"], select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+}
+
+/* 버튼 스타일 */
+input[type="button"], input[type="reset"]  {
+    padding: 8px 15px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+input[type="submit"]{
+	    padding: 8px 15px;
+    cursor: pointer;
+    background-color: #dcf487;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    transition: background 0.3s;
+	
+}
+input[type="button"]:hover, input[type="reset"]:hover {
+    background-color: #45a049;
+}

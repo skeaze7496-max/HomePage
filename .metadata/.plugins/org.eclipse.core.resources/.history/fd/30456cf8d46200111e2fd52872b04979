@@ -1,0 +1,7 @@
+package com.boardone;
+
+public class BoardVO {
+	private int num;
+	private String writer;
+	
+}

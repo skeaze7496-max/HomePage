@@ -1,0 +1,14 @@
+package com.sungjuk;
+
+/*
+ * 		속성만 존재하는 클래스 
+ * 
+ */
+public class Record {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

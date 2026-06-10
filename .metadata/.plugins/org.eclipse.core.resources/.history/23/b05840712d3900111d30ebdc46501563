@@ -1,0 +1,31 @@
+package com.whileEx;
+
+/*		문]
+ * 			-1^2+^2-3^2 +4^2 ......... + 100^2
+ *		 	구하는 프로그램을 작성하시오.
+ *			단, while문 사용
+ * 
+ */
+
+public class WhileEx04 {
+
+	public static void main(String[] args) {
+		
+		int i = 1, sum = 0;
+		
+		while(1 <= 99) {
+			n++;
+			if(n % 2 == 0) {
+				
+			}else
+			if(n % 2 == 1) {
+				
+			}
+		}
+		System.out.println(n);
+		
+		
+		
+	}
+
+}

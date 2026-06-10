@@ -1,0 +1,15 @@
+package forExam;
+
+/*		문]
+ * 			양의 실수만 입력받아 입력받은 수까지
+ * 
+ */
+public class ForExam02 {
+
+	public static void main(String[] args) {
+		
+		
+		
+	}
+
+}

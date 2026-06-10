@@ -1,0 +1,14 @@
+package com.sungjuk;
+
+/*		속성(필드) : 인원수, Record 객체 배열
+ * 		기능(메소드) : 
+ * 						입력 : set() : 인원수 입력받는 기능 - 객체배열
+ * 						계산 : input() : 데이터 입력, 총점 계산, 평균계산
+ * 								ranking() : 석차를 구하는 기능
+ * 						출력 : print() : 결과를 출력하는 기능
+ * 
+ */
+
+public class Sungjuk {
+
+}

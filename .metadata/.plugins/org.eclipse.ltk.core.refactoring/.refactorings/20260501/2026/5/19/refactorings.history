@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 4 elements to &apos;20260506/src/com.mscore&apos;&#x0D;&#x0A;- Original project: &apos;20260501&apos;&#x0D;&#x0A;- Destination element: &apos;20260506/src/com.mscore&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     com.ascore.Score.java&#x0D;&#x0A;     com.ascore.Scoreimpl.java&#x0D;&#x0A;     com.ascore.ScoreMain.java&#x0D;&#x0A;     com.ascore.ScoreVO.java" description="Copy compilation units" destination="=20260506/src&lt;com.mscore" element1="/src&lt;com.ascore{Score.java" element2="/src&lt;com.ascore{Scoreimpl.java" element3="/src&lt;com.ascore{ScoreMain.java" element4="/src&lt;com.ascore{ScoreVO.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1778056583508" units="4" version="1.0"/>
+</session>

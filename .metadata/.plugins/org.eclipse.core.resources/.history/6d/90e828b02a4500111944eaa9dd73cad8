@@ -1,0 +1,22 @@
+package com.collection;
+
+class Mydata{
+	public String name;
+	public int age;
+	
+	public Mydata()	{
+		name="";
+		age= 0;
+	}
+	public Mydata(String name, int age) {
+		this.name=name;
+		this.age = age;
+	}
+}
+
+public class VectorEx04 {
+	
+	public static void main(String[] args) {
+		
+	}
+}

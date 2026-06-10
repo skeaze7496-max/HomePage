@@ -1,0 +1,10 @@
+package com.vscore;
+import java.util.*;
+public class ScoreVO {
+	
+	private String hak;
+	
+	
+	
+	
+}

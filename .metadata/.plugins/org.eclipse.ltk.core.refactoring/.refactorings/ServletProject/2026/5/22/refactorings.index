@@ -1,0 +1,35 @@
+1779844078991	Rename resource 'Hello.jsp'
+1779845929067	Rename resource 'direct'
+1779846505830	Delete element
+1779847289003	Move 'bufferEx.jsp' to 'directive'
+1779847314589	Rename resource 'ㅑㅜ래.jsp'
+1779848105183	Delete element
+1779848136735	Delete element
+1779849310743	Move 'errinvoke.jsp' to 'error'
+1779849322482	Move 'errinvoke.jsp' to 'directive'
+1779851098052	Rename resource 'ㅑㅜ치ㅕㅇㄸㅌ.jsp'
+1779851112497	Rename resource 'includEx.jsp'
+1779851346923	Move 'importEx.jsp' to 'error'
+1779851349296	Move 'importEx.jsp' to 'sample'
+1779851716919	Rename resource 'impl'
+1779929341791	Rename resource 'appEx0.jsp'
+1779930259269	Rename resource 'bufferEx01.jsp'
+1779930691748	Rename resource 'attr'
+1779930697394	Delete element
+1779935918799	Delete element
+1779935963356	Move 'a.jsp' to 'module'
+1779935964441	Move 'b.jsp' to 'module'
+1779935965327	Move 'c.jsp' to 'module'
+1779936076471	Rename resource 'module'
+1779936091052	Rename resource 'viewmodule'
+1779936803921	Move 'index.jsp' to 'temp'
+1779940543373	Delete element
+1779940562006	Copy compilation unit
+1779940566072	Delete element
+1779940575135	Rename resource 'Sampledata.java'
+1780015174795	Rename resource 'samplform.jsp'
+1780015178285	Rename resource 'samplㄷform.jsp'
+1780015249839	Delete element
+1780015709199	Move file
+1780015722236	Rename compilation unit 'Simpledata.java'
+1780019123603	Rename package 'com.action'

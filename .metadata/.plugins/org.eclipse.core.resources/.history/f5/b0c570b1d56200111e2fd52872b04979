@@ -1,0 +1,17 @@
+package com.boardone;
+import java.sql.*;
+import javax.sql.*;
+import javax.naming.*;
+
+public class ConnUtil {
+
+	private static DateSource ds;
+	
+	static {
+		try {
+			
+		} catch (Exception e) {
+			// 
+		}
+	}
+}

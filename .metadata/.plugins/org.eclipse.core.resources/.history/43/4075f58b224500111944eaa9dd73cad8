@@ -1,0 +1,22 @@
+package com.collection;
+
+import java.util.*;
+
+class MyVector extends Vector {
+	
+	public MyVector()	{
+		super(1,1);
+	}
+	
+	
+	
+}
+
+public class VectorEx02 {
+
+	public static void main(String[] args) {
+		
+	}
+	
+	
+}

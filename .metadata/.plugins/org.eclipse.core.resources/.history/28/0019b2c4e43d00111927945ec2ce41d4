@@ -1,0 +1,16 @@
+package com.sungjuk;
+
+/*
+ * 		속성만 존재하는 클래스
+ * 		
+ * 		속성 : 이름, 국어, 영어, 수학, 총점, 평균
+ * 
+ */
+public class Record {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

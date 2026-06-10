@@ -1,0 +1,5 @@
+package com.boardone;
+import java.sql.*;
+public class ConnUtil {
+
+}

@@ -1,0 +1,8 @@
+package com.vscore;
+
+public interface Score {
+	
+	public void insert();
+	public void update();
+	public void delete();
+}

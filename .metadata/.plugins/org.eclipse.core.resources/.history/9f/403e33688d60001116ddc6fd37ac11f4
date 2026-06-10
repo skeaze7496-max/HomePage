@@ -1,0 +1,347 @@
+package com.memberone;
+
+import java.io.PrintWriter;
+import java.sql.*;
+import java.util.Vector;
+
+import javax.sql.*;
+import javax.naming.*;
+
+public class StudentDAO {
+	
+	// DB 연결을 담당하는 메서드 (JNDI 방식 사용)
+	private Connection getConnection() {
+		Connection con = null;
+		DataSource ds;
+		try {
+			// Context를 생성하여 서버 자원에 접근
+			Context initContext = new InitialContext();
+			Context envContext = (Context)initContext.lookup("java:/comp/env");
+			// web.xml이나 context.xml에 설정된 데이터 소스 "jdbc/myoracle"을 찾음
+			ds = (DataSource)envContext.lookup("jdbc/myoracle");
+			con = ds.getConnection();//연결 획득
+		} catch (Exception e) {
+			System.out.println("Connection 생성 실패");
+		}
+		return con;
+	}
+	
+	// 아이디 중복 체크 (DB에 해당 아이디가 있으면 true, 없으면 false 반환)
+	public boolean idCheck(String id) {
+		
+		boolean result = true;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		/* Connection con (전화기)
+		 * 역할: 자바 프로그램과 데이터베이스 서버를 연결하는 통로입니다.
+		 * 비유: 데이터베이스라는 거대한 빌딩에 전화를 거는 전화기입니다. 
+		 * 이 연결이 되어 있어야만 데이터를 주고받을 수 있습니다.
+		 * 특징: 서버와 연결을 맺는 것이므로 가장 중요하고
+		 */
+		
+		/* PreparedStatement pstmt (말할 내용 / 명령서)
+		 * 역할: 우리가 데이터베이스에게 시킬 SQL 명령어를 담는 객체입니다.
+		 * 비유: DB에 전달할 '주문서' 또는 '명령서'입니다. 단순히 명령만 담는 게 아니라,
+		 * ?를 사용하여 사용자로부터 받은 아이디나 비밀번호 같은 데이터를 안전하게 끼워 넣는 역할도 합니다.
+		 * 특징: SQL 인젝션 같은 해킹 공격을 방지해주어 보안상 매우 안전합니다.
+		 */
+		
+		/* ResultSet rs (상대방의 대답)
+		 * 역할: 데이터베이스에게 SELECT 명령(데이터 조회)을 보냈을 때, 돌아온 결과물(데이터 테이블)을 담는 객체입니다.
+		 * 비유: 데이터베이스로부터 받은 '답장 서류'입니다.
+		 * 특징: 결과가 여러 줄일 수 있기 때문에 rs.next()라는 명령어를 이용해 한 줄씩 데이터를 읽어내려가며 사용합니다. 
+		 */
+		
+		try {
+			//데이터베이스 연결
+			con = getConnection();
+			String sql = "select * from student where id=?";//? 는 값을 몰라서 쓰는것.
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1,id);
+			
+			rs = pstmt.executeQuery();
+			
+			if(!rs.next()) result = false;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// 자원 해제는 예외 발생 여부와 관계없이 finally에서 수행
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+	/* 우편번호를 데이터베이스에서 검색해서 결과를 Vector에 저장해서 리턴해주는
+	 * 기능을 구현한다.
+	 */
+	public Vector<ZipCodeVO> zipcodeRead(String dong) {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Vector<ZipCodeVO> vecList = new Vector<ZipCodeVO>();
+		
+		
+		try {
+			con =  getConnection();
+			// 동이름을 조건으로 하여 데이터 베이스에서 우편번호를 검색하는 쿼리문 작성
+			String sql = "select * from zipcode where dong like'"+dong+"'";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				ZipCodeVO tempZipcode = new ZipCodeVO();
+				tempZipcode.setZipcode(rs.getString("zipcode"));
+				tempZipcode.setSido(rs.getString("sido"));
+				tempZipcode.setGugun(rs.getString("gugun"));
+				tempZipcode.setDong(rs.getString("dong"));
+				tempZipcode.setRi(rs.getString("ri"));
+				tempZipcode.setBunji(rs.getString("bunji"));
+				vecList.addElement(tempZipcode);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// 자원 해제는 예외 발생 여부와 관계없이 finally에서 수행
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return vecList;
+	}
+
+	/* 회원가입처리
+	 * 실제로 데이터베이스에 회원데이터를 저장하기위하여 메소드 구현한다.
+	 */
+	public boolean memberInsert(StudentVO vo) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		
+		boolean flag = false;
+		
+		try {
+			con = getConnection();
+			String sql = "insert into student values(?,?,?,?,?,?,?,?,?,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, vo.getId());      // 1번 물음표
+			pstmt.setString(2, vo.getPass());    // 2번 물음표
+			pstmt.setString(3, vo.getName());    // 3번 물음표
+			pstmt.setString(4, vo.getPhone1());  // 4번 물음표
+			pstmt.setString(5, vo.getPhone2());  // 5번 물음표
+			pstmt.setString(6, vo.getPhone3());  // 6번 물음표
+			pstmt.setString(7, vo.getEmail());   // 7번 물음표
+			pstmt.setString(8, vo.getZipcode()); // 8번 물음표
+			pstmt.setString(9, vo.getAddress1());// 9번 물음표
+			pstmt.setString(10, vo.getAddress2());// 10번 물음표
+			
+			
+			int count = pstmt.executeUpdate();
+			if(count > 0) flag = true;
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return flag;
+	}//end memberInsert
+	
+	/* 로그인 버튼을 클릭하면 로그인 폼에 입력한 ID, PW가 DB에 저장된
+	 * 정보와 일치하는지 비교해서 같으면 로그인성공 다르면 실패를
+	 * 처리하는 메소드 구현
+	 *  -1 : 없는 ID
+	 *  0  : 비밀번호 오류
+	 *  1  : 로그인성공
+	 */
+	
+	public int loginCheck(String id, String pass) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int check = -1;
+		
+		try {
+			con = getConnection();
+			String sql = "select pass from student where id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1,id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {//ID로 PW를 검색한 결과가 있다면
+				String dbPass = rs.getString("pass");
+				if(pass.equals(dbPass)) {//사용자가 입력한 비밀번호와 DB의 비밀번호가 일치하면
+					check = 1;
+				}else {//비밀번호와 DB에 입력된 비밀번호가 일치하지않을때
+					check = 0;
+				}
+			}else {//ID가 없을때
+				check = -1;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return check;
+	}//end loginCheck
+	
+	/* 로그인 성공 후 회원정보 수정 버튼을 클릭하면 회원정보를 수정할 수 있도록 
+	 * 미리 화면에 보여줌. 
+	 * 세션에 설정된 아이디를 가지고 회원정보를 가져오는 메소드를 구현
+	 */
+	public StudentVO getMember(String id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		StudentVO vo = null;
+		
+		try {
+			con = getConnection();
+			String sql = "select * from student where id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {//해당 아이디에 대한 회원정보가 존재한다면 
+				vo = new StudentVO();
+				vo.setId(rs.getString("id"));
+				vo.setPass(rs.getString("pass"));
+				vo.setName(rs.getNString("name"));
+				vo.setPhone1(rs.getString("phone1"));
+				vo.setPhone2(rs.getString("phone2"));
+				vo.setPhone3(rs.getString("phone3"));
+				vo.setEmail(rs.getString("email"));
+				vo.setZipcode(rs.getString("zipcode"));
+				vo.setAddress1(rs.getString("address1"));
+				vo.setAddress2(rs.getString("address2"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return vo;
+		
+		
+	}
+	/*
+	 * 회원 정보를 수정하는 메소드를 구현한다.
+	 * 회원정보수정 버튼을 클릭하면 데이터베이스에 저장된 정보가 
+	 * 수정되도록 메소드로 구현한다.
+	 */
+	public void updateMember(StudentVO vo) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = getConnection();
+	        // 보내주신 테이블 구조에 맞춘 UPDATE 문
+	        String sql = "UPDATE STUDENT SET PASS=?, NAME=?, PHONE1=?, PHONE2=?, PHONE3=?, " +
+	                     "EMAIL=?, ZIPCODE=?, ADDRESS1=?, ADDRESS2=? WHERE ID=?";
+	        
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setString(1, vo.getPass());
+	        pstmt.setString(2, vo.getName());
+	        pstmt.setString(3, vo.getPhone1());
+	        pstmt.setString(4, vo.getPhone2());
+	        pstmt.setString(5, vo.getPhone3());
+	        pstmt.setString(6, vo.getEmail());
+	        pstmt.setString(7, vo.getZipcode());
+	        pstmt.setString(8, vo.getAddress1());
+	        pstmt.setString(9, vo.getAddress2());
+	        pstmt.setString(10, vo.getId());
+
+			pstmt.executeUpdate();//해줘야 데이터가 변경됨
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}//end updateMember 
+
+	/* 회원탈퇴
+	 */
+	public int deleteMember(String id, String pass) {
+	    Connection con = null;
+	    PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int check = -1; // 1:성공, 0:비번불일치, -1:아이디없음 등 상태 저장
+		
+	    try {
+	        con = getConnection();
+	        String sql = "select pass from STUDENT WHERE ID = ?";
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setString(1, id);
+	        rs = pstmt.executeQuery();
+	                
+	        if(rs.next()) {
+	        	String dbPass= rs.getString("pass");
+	        	
+	        	if(pass.equals(dbPass)) {
+	        		//사용자가 입력한 비밀번호와
+	        		//데이터베이스에 정자된 비밀번호가 같으면
+	        		String sql1 = "delete from student where id=?";
+	        		pstmt = con.prepareStatement(sql1);
+	        		pstmt.setString(1,id);
+	        		pstmt.executeUpdate();
+	        		check = 1;//탈퇴성공
+	        	}
+	        }else {
+	        	check = 0;
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if(pstmt != null) pstmt.close();
+	            if(con != null) con.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    return check;
+	}//end deleteMember
+
+	
+}

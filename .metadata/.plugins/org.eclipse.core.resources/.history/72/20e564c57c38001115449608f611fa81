@@ -1,0 +1,20 @@
+package forExam;
+
+/*		문]
+ * 			두 개의 정수를 입력받아 그 사이에 존재하는 정수들의
+ * 			합계를 구하는 프로그램을 구현하시오.
+ * 			ex) 3 5 => 3+4+5 : 12
+ * 			
+ * 
+ */
+
+
+public class ForExam04 {
+
+	public static void main(String[] args) {
+		
+		
+		
+	}
+
+}

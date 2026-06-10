@@ -1,0 +1,13 @@
+package com.collection;
+
+class Mydata{
+	
+}
+
+public class VectorEx04 {
+
+	
+	public static void main(String[] args) {
+		
+	}
+}

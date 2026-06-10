@@ -1,0 +1,15 @@
+function writeSave(){
+	
+	if(document.writeForm.writer.value==""){
+		alert("작성자를 입력해주세요");
+		docuement.writeForm.wirter.focus();
+		return false;
+	}
+	if(document.writeForm.subject.value==""){
+		alert("제목을 입력해주세요");
+		docuement.writeForm.wirter.focus();
+		return false;
+	}
+	
+	
+}

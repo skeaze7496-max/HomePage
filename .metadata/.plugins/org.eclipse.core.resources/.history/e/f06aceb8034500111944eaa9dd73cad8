@@ -1,0 +1,23 @@
+package com.collection;
+import java.util.*;
+public class CollectEx02 {
+
+	//문자열 배열 선언 및 초기화
+	private static final String[] Colors = {"검정", "노랑","초록", "파랑"};
+	
+	
+	
+	
+	
+	
+	public static void main(String[] args) {
+		
+		
+		
+		
+		
+		
+		
+	}
+
+}

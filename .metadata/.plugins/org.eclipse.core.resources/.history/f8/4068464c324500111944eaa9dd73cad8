@@ -1,0 +1,17 @@
+package com.vscore;
+import java.util.*;
+public class ScoreMain {
+
+	public static void main(String[] args) throws {		
+		char ch;
+		Score score = new Scoreimpl();
+		
+		try {
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+	}
+	
+}
