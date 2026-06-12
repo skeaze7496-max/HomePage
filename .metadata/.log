@@ -4077,3 +4077,12 @@ org.eclipse.core.runtime.AssertionFailedException: assertion failed:
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:654)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:591)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1462)
+
+!ENTRY org.eclipse.equinox.p2.metadata.repository 4 1000 2026-06-12 10:25:13.815
+!MESSAGE No repository found at https://www.certiv.net/updates/net.certiv.indentguide.site.
+
+!ENTRY org.eclipse.equinox.p2.metadata.repository 4 1000 2026-06-12 10:25:45.045
+!MESSAGE No repository found at http://download.eclipse.org/technology/m2e/releases/.
+
+!ENTRY org.eclipse.equinox.p2.metadata.repository 4 1000 2026-06-12 10:27:07.998
+!MESSAGE No repository found at http://dl.bintray.com/testng-team/testng-p2-release/.
